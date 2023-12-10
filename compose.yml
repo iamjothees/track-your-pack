@@ -5,6 +5,12 @@ services:
         image: bitnami/laravel:10
         ports:
             - 8000:8000
+        environment:
+        - DB_HOST=db
+        - DB_PORT=3306
+        - DB_DATABASE='track-your-pack'
+        - DB_USERNAME=root
+        - DB_PASSWORD='track-your-pack'
         volumes:
             - ./app:/app
         stdin_open: true
