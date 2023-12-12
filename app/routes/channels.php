@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Package;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('track-package-{package}', function ($user, Package $package) {
+    return (int) $user->id === $package->reciever_id;
 });
