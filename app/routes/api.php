@@ -18,13 +18,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/auth', [ UserController::class, 'auth' ]);
-Route::post('/logout', [ UserController::class, 'logout' ]);
 Route::post('staffs/auth', [ StaffController::class, 'auth' ]);
-Route::post('staffs/logout', [ StaffController::class, 'logout' ]);
 
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
-Route::middleware('auth:sanctum')->get('/staff', function (Request $request) {
-    return $request->user();
+
+Route::middleware(['auth:sanctum', 'type.user'])->group(  function(){
+    
+    Route::delete('/logout', [ UserController::class, 'logout' ]);
+    Route::delete('/logout-of-all-devices', [ UserController::class, 'logoutOfAllDevices' ]);
+
+    Route::get('/profile', function (Request $request) {
+        return $request->user();
+    });
+
+});
+
+
+Route::middleware(['auth:sanctum', 'type.staff'])->group(  function(){
+
+    Route::delete('staffs/logout', [ StaffController::class, 'logout' ]);
+    Route::delete('staffs/logout-of-all-devices', [ StaffController::class, 'logoutOfAllDevices' ]);
+
+    Route::get('staffs/profile', function (Request $request) {
+        return $request->user();
+    });
+
 });
