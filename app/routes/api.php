@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Staffs\AuthController as StaffAuthController;
-use App\Http\Controllers\Users\AuthController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/auth', [ AuthController::class, 'authenticate' ]);
-Route::post('staffs/auth', [ StaffAuthController::class, 'authenticate' ]);
+Route::post('/auth', [ UserController::class, 'auth' ]);
+Route::post('/logout', [ UserController::class, 'logout' ]);
+Route::post('staffs/auth', [ StaffController::class, 'auth' ]);
+Route::post('staffs/logout', [ StaffController::class, 'logout' ]);
 
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Staffs;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class StaffController extends Controller
 {
-    function authenticate( Request $request){
+    function auth( Request $request){
 
         $staff = Staff::where('phone', $request->phone)->first();
         if ( !$staff ){

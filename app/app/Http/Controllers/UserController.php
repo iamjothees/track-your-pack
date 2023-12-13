@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller{
-    function authenticate( Request $request){
+class UserController extends Controller
+{
+    function auth( Request $request ){
 
         $user = User::where('phone', $request->phone)->first();
         if ( !$user ){
@@ -27,5 +27,14 @@ class AuthController extends Controller{
             'autherization-token' => $user->createToken( "LOGIN_TOKEN" )->plainTextToken
         ];
 
+    }
+
+    function logout( Request $request ){
+        $request->user()->currentAccessToken()->delete();
+        
+        
+    }
+    function logoutOfAllDevices( Request $request ){
+        $request->user()->tokens()->delete();
     }
 }
