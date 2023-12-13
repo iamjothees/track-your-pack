@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import styles from './../page.module.css';
 
 export default function Role( { role } ) {
@@ -6,8 +7,8 @@ export default function Role( { role } ) {
         console.log( [role] );
     }
     return (
-        <div className={styles.roles} onClick={handleRoleSelect}>
+        <Link href={`/${role}`} className={styles.roles} onClick={handleRoleSelect}>
             { role.toUpperCase() }
-        </div>
+        </Link>
     )
 }
