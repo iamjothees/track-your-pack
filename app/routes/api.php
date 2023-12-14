@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PackageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,10 @@ Route::middleware(['auth:sanctum', 'type.user'])->group(  function(){
     Route::get('/profile', function (Request $request) {
         return $request->user();
     });
+    
+    Route::apiResources([
+        'packages' => '\App\Http\Controllers\PackageController'
+    ]);
 
 });
 
