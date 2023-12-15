@@ -31,7 +31,10 @@ services:
             - 3000:3000
         volumes:
             - ./user-view:/app
-            - /app/node_modules
-            - /app/.next
+            - user_view_node_modules:/app/node_modules
+            - user_view_dot_next:/app/.next
         stdin_open: true
         tty: true
+volumes: 
+    user_view_node_modules:
+    user_view_dot_next:
