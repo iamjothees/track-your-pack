@@ -8,10 +8,8 @@ export default function RoleProvider( { children } ) {
 
     useEffect( () => localStorage.setItem('active-role', active ), [active]);
 
-    const change = (selectedRole) =>{ 
-        setActive(selectedRole);
-        console.log("EEE");
-    };
+    const change = (selectedRole) => setActive(selectedRole);
+    
     return (
         <RoleContext.Provider value={{active, change}}>
             { children }

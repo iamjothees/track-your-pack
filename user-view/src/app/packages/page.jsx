@@ -1,10 +1,10 @@
-"use client";
+
 import Package from './components/package';
 import styles from './page.module.css';
 import axios from 'axios';
 
 export default async function packages() {
-    // const packages = await getPackages();
+    const packages = await getPackages();
 
     
     const apiBaseUrl = process.env.API_BASE_URL;
@@ -13,14 +13,14 @@ export default async function packages() {
     return (
         <div className={`${styles.container} w-100 p-3 p-md-5`}>
             {
-                // packages 
-                //     ? (
-                //         packages.map(( package_ ) =>
-                //             <Package package_={package_}/>
-                //         ))
-                //     : (
-                //         <div> No Packages Available </div>
-                //     )
+                packages 
+                    ? (
+                        packages.map(( package_ ) =>
+                            <Package package_={package_}/>
+                        ))
+                    : (
+                        <div> No Packages Available </div>
+                    )
             }
         </div>
     )
