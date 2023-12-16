@@ -5,7 +5,7 @@ export default function NavItem( { label, icon, route } ) {
     return (
         <Link href={route} className={layoutStyles.navItem}>
             { icon }
-            { label }
+            <span className={layoutStyles.navItemLabel} >{ label }</span>
         </Link>
     )
 }
