@@ -20,7 +20,7 @@ class PackageController extends Controller
         if( $role == "reciever"){
             $packagesQuery->whereRecieverId( $request->user()->id )->with('dispatcher');
         }
-        $packages =  $packagesQuery->get();
+        $packages =  $packagesQuery->paginate();
         return $this->success([
             'packages' => $packages
         ]);

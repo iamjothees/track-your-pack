@@ -1,8 +1,12 @@
-
+"use client";
 
 export default function Package( { package_ } ) {
+    const handleClick = () => {
+        console.log(`clicked ${package_.id}`);
+    };
+
     return (
-        <div className={"card p-3 d-flex flex-column"}>
+        <div className={"card p-3 d-flex flex-column"} onClick={ handleClick }>
             <div className={"d-flex flex-row "}>
                 <label className={"label"}>Dispatcher / Reciever :</label>
                 <span className="ps-2"> { package_.dispatcher.name } </span>
