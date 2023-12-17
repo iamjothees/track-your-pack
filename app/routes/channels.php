@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('track-package-{package}', function ($user, Package $package) {
-    return (int) $user->id === $package->reciever_id;
+    return (int) ($user->id === $package->reciever_id || $user->id === $package->dispatcher_id || $user->id === $package->delivery->delivery_person_id );
 });

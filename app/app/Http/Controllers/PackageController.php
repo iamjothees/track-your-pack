@@ -37,9 +37,10 @@ class PackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Package $package)
     {
-        //
+        $package->load(['dispatcher', 'receiver', 'delivery']);
+        return $this->success(['package' => $package]);
     }
 
     /**

@@ -32,9 +32,19 @@ services:
         volumes:
             - ./user-view:/app
             - user_view_node_modules:/app/node_modules
-            - user_view_dot_next:/app/.next
+            - /app/.next
+        stdin_open: true
+        tty: true
+    staff-view:
+        image: next-js:14
+        ports:
+            - 3000:3000
+        volumes:
+            - ./staff-view:/app
+            - staff_view_node_modules:/app/node_modules
+            - /app/.next
         stdin_open: true
         tty: true
 volumes: 
     user_view_node_modules:
-    user_view_dot_next:
+    staff_view_node_modules:

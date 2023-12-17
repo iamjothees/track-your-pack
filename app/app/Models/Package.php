@@ -13,7 +13,11 @@ class Package extends Model
         return $this->belongsTo( User::class, "dispatcher_id" );
     }
     
-    function reciever(){
+    function receiver(){
         return $this->belongsTo( User::class, 'reciever_id' );
+    }
+    
+    function delivery(){
+        return $this->belongsTo( Delivery::class, 'delivery_id' );
     }
 }

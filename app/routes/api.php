@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PackageController;
@@ -49,5 +50,7 @@ Route::middleware(['auth:sanctum', 'type.staff'])->group(  function(){
     Route::get('staffs/profile', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('/deliveries/{delivery}/mark-as/{status}', [ DeliveryController::class, 'markAs' ]);
 
 });

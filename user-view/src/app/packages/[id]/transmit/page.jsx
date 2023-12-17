@@ -6,7 +6,7 @@ function Transmit({params:{ id }}) {
 
     // localStorage.setItem('auth-token', '3|qt7SO12TSkNMx6ZjDegxANiQFCz1Xm30NJO6HKkp02ad54e7');
     // const token = localStorage.getItem('auth-token');
-    const token = '3|qt7SO12TSkNMx6ZjDegxANiQFCz1Xm30NJO6HKkp02ad54e7';
+    const token = '12|c6Kf1i6NCnfwjDl0nhYDa9uTLczkxmAmCAKG2IBR9d4b58b5';
 
     const pusher = new Pusher("27ab16226e94cc8fc74c", {
         cluster: "ap2",
@@ -20,7 +20,7 @@ function Transmit({params:{ id }}) {
     });
 
     useEffect( () => {
-        var channel = pusher.subscribe(`private-track-package-${id+1}`);
+        var channel = pusher.subscribe(`private-track-package-${id}`);
         
         channel.bind("pusher:subscription_succeeded", () => {
             channel.trigger("client-package.transmitted", {message: "Out for delivery"});

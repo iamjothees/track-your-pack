@@ -9,6 +9,8 @@ class Delivery extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     function deliveryPerson(){
         return $this->belongsTo( Staff::class, 'delivery_person_id' );
     }

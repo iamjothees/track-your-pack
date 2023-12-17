@@ -1,8 +1,13 @@
 "use client";
+import { useRouter } from 'next/navigation';
+
 
 export default function Package( { package_ } ) {
+    const router = useRouter();
     const handleClick = () => {
+        router.push(`/packages/${package_.id}`);
         console.log(`clicked ${package_.id}`);
+
     };
 
     return (
