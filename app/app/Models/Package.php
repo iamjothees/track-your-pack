@@ -14,7 +14,7 @@ class Package extends Model
     }
     
     function receiver(){
-        return $this->belongsTo( User::class, 'reciever_id' );
+        return $this->belongsTo( User::class, 'receiver_id' );
     }
     
     function delivery(){

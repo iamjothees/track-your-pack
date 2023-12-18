@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('dispatcher_id')->constrained('users')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('reciever_id')->constrained('users')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('receiver_id')->constrained('users')->onDelete('restrict')->onUpdate('cascade');
             $table->unsignedBigInteger('weight_in_grams')->nullable();
             $table->timestamps();
             $table->softDeletes(); 

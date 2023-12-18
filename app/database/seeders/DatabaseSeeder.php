@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Delivery;
+use App\Models\Location;
 use App\Models\Package;
 use App\Models\Staff;
 use App\Models\User;
@@ -17,8 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+
         Delivery::factory()
-            ->count(10)
+            ->count(2)
             ->for(
                 Staff::factory()->create()
                 , 'deliveryPerson'
@@ -32,8 +39,12 @@ class DatabaseSeeder extends Seeder
                     )
                     ->for(
                         User::factory()->create()
-                        , 'reciever'
+                        , 'receiver'
                     )
+            )
+            ->for( 
+                Location::factory()->create() ,
+                'location'
             )
             ->create();
     }

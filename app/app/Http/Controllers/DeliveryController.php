@@ -10,6 +10,16 @@ class DeliveryController extends Controller
 {
     use JSONResponseTrait;
 
+    function index( Request $request ){
+        $role = $request->role;
+        $deliveries = Delivery::query()
+            ->withCount('packages')
+            ->paginate();
+        return $this->success([
+            'deliveries' => $deliveries
+        ]);
+    }
+
     function markAs( Delivery $delivery, $status ){
         $delivery->update([
             'status' => 2

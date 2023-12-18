@@ -20,7 +20,6 @@ export default async function pack({ params: {id}}) {
 }
 
 export async function getPack(id){
-    
     const authToken = "14|MFOODKvjhVGoqqAKz6MIaswoWy3zlX8KSS6d2cpJ47732df0";
     axios.defaults.headers.common["Accept"] = `application/json`;
     axios.defaults.headers.common["Authorization"] = `Bearer ${authToken}`;

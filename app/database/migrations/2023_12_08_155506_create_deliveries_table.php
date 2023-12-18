@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('delivery_person_id')->constrained('staffs')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('location_id')->constrained('locations')->onDelete('restrict')->onUpdate('cascade');
             $table->tinyInteger('status')->default(1)->comments("
                 1 :- Processing
                 2 :- Out for Delivery

@@ -51,6 +51,10 @@ Route::middleware(['auth:sanctum', 'type.staff'])->group(  function(){
         return $request->user();
     });
 
+    Route::apiResources([
+        'deliveries' => '\App\Http\Controllers\DeliveryController'
+    ]);
+
     Route::post('/deliveries/{delivery}/mark-as/{status}', [ DeliveryController::class, 'markAs' ]);
 
 });
