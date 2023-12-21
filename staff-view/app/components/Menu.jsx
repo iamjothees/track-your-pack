@@ -3,15 +3,21 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import CloseIcon from './CloseIcon';
 import MenuItem from './MenuItem';
+import Divider from './Divider';
 
 let ScreenHeight = Dimensions.get("window").height;
 export default function Menu() {
     const [ menuOpen, setMenuOpen] = useState(false);
+    const [ activeMenuIndex, setActiveMenuIndex] = useState(null);
     const toggleMenu = ()=>{
         setMenuOpen( prev => !prev );
     };
     const handleMenuClose = ()=>{
         setMenuOpen( false );
+    };
+    const handleItemPress = (index) => {
+        setActiveMenuIndex(index);
+        handleMenuClose();
     };
     return (
         <>
@@ -24,10 +30,23 @@ export default function Menu() {
                     <View style={styles.sidebar}>
                         <CloseIcon  onPress={handleMenuClose} style={styles.closeIcon}/>
                         <View style={styles.menuItems}>
-                            <MenuItem label={"Settings"} icon={""} />
-                            <MenuItem label={"Settings"} icon={""} isActive={true} />
-                            <MenuItem label={"Settings"} icon={""} />
+                            <MenuItem 
+                                label={"Current Delivery"} icon={""} isActive={activeMenuIndex === 0} 
+                                onPress={ () => handleItemPress(0) }
+                            />
+                            <MenuItem 
+                                label={"Packages"} icon={""} isActive={activeMenuIndex === 1} 
+                                onPress={ () => handleItemPress(1) }
+                            />
+                            <MenuItem 
+                                label={"Deliveries"} icon={""} isActive={activeMenuIndex === 2} 
+                                onPress={ () => handleItemPress(2) }
+                            />
                             <Divider />
+                            <MenuItem 
+                                label={"Settings"} icon={""} isActive={activeMenuIndex === 3} 
+                                onPress={ () => handleItemPress(3) }
+                            />
                         </View>
                     </View>
                 )

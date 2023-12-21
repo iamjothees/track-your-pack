@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, Pressable, TouchableHighlight, View } from "react-native"
 
-export default function MenuItem({label="Hello", style={}, isActive=false}) {
+export default function MenuItem({label="Hello", style={}, isActive=false, onPress}) {
     return (
-        <View style={{ ...styles.container, ...(isActive ? styles.activeContainer : {} ), ...style }} >
+        <Pressable style={{ ...styles.container, ...(isActive ? styles.activeContainer : {} ), ...style }} onPress={onPress}>
             <Text style={{ ...styles.container.label, ...(isActive ? styles.activeContainer.label : {} ), ...style }} >{label}</Text>
-        </View>
+        </Pressable>
     );
 }
 
