@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
@@ -6,7 +5,6 @@ export default function App() {
     <View style={styles.container}>
       <Text>Test!</Text>
       <Link href="/about">About</Link>
-      <StatusBar style="auto" />
     </View>
   );
 }

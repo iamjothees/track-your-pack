@@ -1,12 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Menu from './Menu';
+import Logo from './Logo';
 
-export default function NavBar() {
+
+export default function NavBar({style}) {
     return (
         <View>
-            <View style={styles.navbar}>
+            <View style={{...style,...styles.navbar}}>
                 <Menu />
+                <Logo />
             </View>
         </View>
     )
