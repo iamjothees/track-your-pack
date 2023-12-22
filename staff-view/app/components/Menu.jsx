@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { router } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import CloseIcon from './CloseIcon';
@@ -8,16 +9,17 @@ import Divider from './Divider';
 let ScreenHeight = Dimensions.get("window").height;
 export default function Menu() {
     const [ menuOpen, setMenuOpen] = useState(false);
-    const [ activeMenuIndex, setActiveMenuIndex] = useState(null);
+    const [ activeMenuSlug, setActiveMenuSlug] = useState(null);
     const toggleMenu = ()=>{
         setMenuOpen( prev => !prev );
     };
     const handleMenuClose = ()=>{
         setMenuOpen( false );
     };
-    const handleItemPress = (index) => {
-        setActiveMenuIndex(index);
+    const handleItemPress = (slug) => {
+        setActiveMenuSlug(slug);
         handleMenuClose();
+        router.replace(`/${slug}`);
     };
     return (
         <>
@@ -27,28 +29,31 @@ export default function Menu() {
             {
                 menuOpen &&
                 (
+                    <>
+                    <View style={styles.sidebarBackdrop}></View>
                     <View style={styles.sidebar}>
                         <CloseIcon  onPress={handleMenuClose} style={styles.closeIcon}/>
                         <View style={styles.menuItems}>
                             <MenuItem 
-                                label={"Current Delivery"} icon={""} isActive={activeMenuIndex === 0} 
-                                onPress={ () => handleItemPress(0) }
+                                label={"Current Delivery"} icon={""} isActive={activeMenuSlug === 'currentDelivery'} 
+                                onPress={ () => handleItemPress('currentDelivery') }
                             />
                             <MenuItem 
-                                label={"Packages"} icon={""} isActive={activeMenuIndex === 1} 
-                                onPress={ () => handleItemPress(1) }
+                                label={"Packages"} icon={""} isActive={activeMenuSlug === 'packages'} 
+                                onPress={ () => handleItemPress('packages') }
                             />
                             <MenuItem 
-                                label={"Deliveries"} icon={""} isActive={activeMenuIndex === 2} 
-                                onPress={ () => handleItemPress(2) }
+                                label={"Deliveries"} icon={""} isActive={activeMenuSlug === 'deliveries'} 
+                                onPress={ () => handleItemPress('deliveries') }
                             />
                             <Divider />
                             <MenuItem 
-                                label={"Settings"} icon={""} isActive={activeMenuIndex === 3} 
-                                onPress={ () => handleItemPress(3) }
+                                label={"Settings"} icon={""} isActive={activeMenuSlug === 'settings'} 
+                                onPress={ () => handleItemPress('settings') }
                             />
                         </View>
                     </View>
+                    </>
                 )
             }
         </>
@@ -56,6 +61,15 @@ export default function Menu() {
 }
 
 const styles = StyleSheet.create({
+    sidebarBackdrop:{
+        width: "100%",
+        height: ScreenHeight,
+        backgroundColor: "rgba(0, 0, 0, 0.38)",
+        position: 'absolute',
+        top:0,
+        left: 10,
+        zIndex: 10,
+    },
     sidebar:{
         width: "70%",
         height: ScreenHeight,
@@ -64,6 +78,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top:0,
         left: 0,
+        borderRightWidth: 1,
+        borderRightColor: 'white',
+        zIndex: 20,
     },
     closeIcon:{
         position:'absolute',
